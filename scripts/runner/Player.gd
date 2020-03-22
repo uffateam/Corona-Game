@@ -18,9 +18,12 @@ func _ready():
 func _physics_process(delta):
 	velocity.x = 0
 	
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_pressed("ui_up") and (jumping == false):
 		jumping = true
 		velocity.y = jump_speed
+	
+	if is_on_floor():
+		jumping = false
 	
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= run_speed
@@ -30,8 +33,5 @@ func _physics_process(delta):
 		$Sprite.flip_h = false
 	
 	velocity.y += delta * gravity
-	
-	if jumping and is_on_floor():
-		jumping = false
 	
 	velocity = move_and_slide(velocity, Vector2(0, -1))
