@@ -7,6 +7,7 @@ export (int) var gravity = 800
 
 var velocity = Vector2()
 var jumping = false
+var hooking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,23 +19,35 @@ func _input(event):
 	var Posi_Esquerdo = Vector2()
 	var Posi_Direito = Vector2()
 	var Posi_player = get("position")
+	var Posi_rel = Vector2()
+	var norma = 0
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			Posi_Esquerdo = event.position
-			var Posi_rel = Posi_Esquerdo-Posi_player
-			var norma = sqrt((Posi_rel[0]*Posi_rel[0])+(Posi_rel[1]*Posi_rel[1]))
-			print("A norma:",norma)
-			print("Left button was direction uni ",Posi_rel/norma)
+			Posi_rel = Posi_Esquerdo-Posi_player
+			norma = sqrt((Posi_rel[0]*Posi_rel[0])+(Posi_rel[1]*Posi_rel[1]))
+			if (norma > 50) and (norma < 400):
+				velocity.x = 500 * Posi_rel[0]/norma
+				velocity.y = 500 * Posi_rel[1]/norma
+				hooking = true
 		if event.button_index == BUTTON_RIGHT and event.pressed:
 			Posi_Direito = event.position
-			var Posi_rel = Posi_Direito-Posi_player
-			var norma = sqrt((Posi_rel[0]*Posi_rel[0])+(Posi_rel[1]*Posi_rel[1]))
-			print("A norma:",norma)
-			print("Right button was clicked at  uni ",Posi_rel/norma)
+			Posi_rel = Posi_Direito-Posi_player
+			norma = sqrt((Posi_rel[0]*Posi_rel[0])+(Posi_rel[1]*Posi_rel[1]))
+			if (norma > 50) and (norma < 400):
+				velocity.x = 500 * Posi_rel[0]/norma
+				velocity.y = 500 * Posi_rel[1]/norma
+				hooking = true
+	else:
+		hooking = false
 		
 func _physics_process(delta):
-	
-	velocity.x = 0
+	if (hooking == false):
+		gravity = 800
+		velocity.x = 0 
+	else:
+		gravity = 0
+		
 	if Input.is_action_pressed("ui_up") and (jumping == false):
 		jumping = true
 		velocity.y = jump_speed
