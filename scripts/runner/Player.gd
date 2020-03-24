@@ -72,7 +72,9 @@ func _physics_process(delta):
 		$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
 			$AnimatedSprite2.play("Rasteira")
-			velocity.x -= run_speed * 0.1
+			velocity.x += run_speed * 0.5
+			if (velocity.x > -50):
+				velocity.x = 0
 	elif Input.is_action_pressed("ui_right"):
 		lowered = false
 		velocity.x += run_speed
@@ -80,13 +82,16 @@ func _physics_process(delta):
 		$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
 			$AnimatedSprite2.play("Rasteira")
-			velocity.x += run_speed * 0.1
+			velocity.x -= run_speed * 0.5
+			if (velocity.x < 50):
+				velocity.x = 0
+			
 	elif Input.is_action_pressed("ui_down"):
 		lowered = true
 		$AnimatedSprite2.play("Baixado")
 	else:
 		$AnimatedSprite2.play("Idle")
-	
+		
 	velocity.y += delta * gravity
 	
 	velocity = move_and_slide(velocity, Vector2(0, -1))
