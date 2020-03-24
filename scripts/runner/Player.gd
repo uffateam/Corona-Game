@@ -8,6 +8,7 @@ export (int) var gravity = 800
 var velocity = Vector2()
 var jumping = false
 var hooking = false
+var lowered = false
 var Posi_Esquerdo = Vector2()
 var Posi_Direito = Vector2()
 # Called when the node enters the scene tree for the first time.
@@ -64,13 +65,27 @@ func _physics_process(delta):
 		velocity.y = jump_speed
 	if is_on_floor():
 		jumping = false
-	
 	if Input.is_action_pressed("ui_left"):
+		lowered = false
 		velocity.x -= run_speed
-		$Sprite.flip_h = true
+		$AnimatedSprite2.flip_h = true
+		$AnimatedSprite2.play("Run")
+		if Input.is_action_pressed("ui_down"):
+			$AnimatedSprite2.play("Rasteira")
+			velocity.x -= run_speed * 0.1
 	elif Input.is_action_pressed("ui_right"):
+		lowered = false
 		velocity.x += run_speed
-		$Sprite.flip_h = false
+		$AnimatedSprite2.flip_h = false
+		$AnimatedSprite2.play("Run")
+		if Input.is_action_pressed("ui_down"):
+			$AnimatedSprite2.play("Rasteira")
+			velocity.x += run_speed * 0.1
+	elif Input.is_action_pressed("ui_down"):
+		lowered = true
+		$AnimatedSprite2.play("Baixado")
+	else:
+		$AnimatedSprite2.play("Idle")
 	
 	velocity.y += delta * gravity
 	
