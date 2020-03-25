@@ -55,40 +55,40 @@ func _physics_process(delta):
 	var norma_D = sqrt((Posi_rel_D[0] * Posi_rel_D[0]) + (Posi_rel_D[1] * Posi_rel_D[1]))
 	var norma_E = sqrt((Posi_rel_E[0] * Posi_rel_E[0]) + (Posi_rel_E[1] * Posi_rel_E[1]))
 	if(norma_D < 50) or (norma_E < 50):
-#		hooking = false
 		velocity.y = 0
 		velocity.x = 0
 		Posi_Direito = Vector2()
 		Posi_Esquerdo = Vector2()
 	if Input.is_action_pressed("ui_up") and (jumping == false):
+		hooking = false
 		jumping = true
 		velocity.y = jump_speed
 	if is_on_floor():
 		jumping = false
 	if Input.is_action_pressed("ui_left"):
+		hooking = false
 		lowered = false
 		velocity.x -= run_speed
 		$AnimatedSprite2.flip_h = true
 		$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
 			$AnimatedSprite2.play("Rasteira")
-			velocity.x += run_speed * 0.5
-			if (velocity.x > -50):
-				velocity.x = 0
+			if jumping == false:
+				velocity.x += run_speed * 0.3
 	elif Input.is_action_pressed("ui_right"):
+		hooking = false
 		lowered = false
 		velocity.x += run_speed
 		$AnimatedSprite2.flip_h = false
 		$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
 			$AnimatedSprite2.play("Rasteira")
-			velocity.x -= run_speed * 0.5
-			if (velocity.x < 50):
-				velocity.x = 0
+			if jumping == false:
+				velocity.x -= run_speed * 0.3
 			
 	elif Input.is_action_pressed("ui_down"):
 		lowered = true
-		$AnimatedSprite2.play("Baixado")
+		$AnimatedSprite2.play("Abaixado")
 	else:
 		$AnimatedSprite2.play("Idle")
 		
