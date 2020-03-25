@@ -3,10 +3,11 @@ extends KinematicBody2D
 export (int) var run_speed = 200
 export (int) var jump_speed = -400
 export (int) var gravity = 800
-
+export (int) var friction = 70
 var jumping = false
 var hooking = false
 var lowered = false
+var rasteira = false
 var velocity = Vector2()
 var Posi_Esquerdo = Vector2()
 var Posi_Direito = Vector2()
@@ -48,7 +49,15 @@ func _input(event):
 func _physics_process(delta):
 	if (hooking == false):
 		gravity = 800
-		velocity.x = 0 
+		if rasteira == false:
+			velocity.x = 0
+		else:
+			if velocity.x == 0:
+				rasteira = false
+			if velocity.x > 0:
+				velocity.x -= friction * delta
+			else:
+				velocity.x += friction * delta
 	else:
 		gravity = 0
 		
@@ -69,36 +78,43 @@ func _physics_process(delta):
 		velocity.y = jump_speed
 	if is_on_floor():
 		jumping = false
-	
+		friction = 70
+	else:
+		friction = 0
 	if Input.is_action_pressed("ui_left"):
 		hooking = false
-		lowered = false
-		velocity.x -= run_speed
-		$AnimatedSprite2.flip_h = true
-		$AnimatedSprite2.play("Run")
+		if (rasteira == false) and (lowered == false):
+			velocity.x -= run_speed
+			$AnimatedSprite2.flip_h = true
+			$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
+			rasteira = true
 			$AnimatedSprite2.play("Rasteira")
-			if jumping == false:
-				velocity.x += run_speed * 0.3
-	
+			if velocity.x > -50:
+				rasteira = false
+				lowered = true
+				$AnimatedSprite2.play("Abaixado")
 	elif Input.is_action_pressed("ui_right"):
 		hooking = false
-		lowered = false
-		velocity.x += run_speed
-		$AnimatedSprite2.flip_h = false
-		$AnimatedSprite2.play("Run")
+		if (rasteira == false) and (lowered == false):
+			velocity.x += run_speed
+			$AnimatedSprite2.flip_h = false
+			$AnimatedSprite2.play("Run")
 		if Input.is_action_pressed("ui_down"):
+			rasteira = true
 			$AnimatedSprite2.play("Rasteira")
-			if jumping == false:
-				velocity.x -= run_speed * 0.3
-			
+			if velocity.x < 50:
+				rasteira = false
+				lowered = true
+				$AnimatedSprite2.play("Abaixado")
 	elif Input.is_action_pressed("ui_down"):
 		lowered = true
+		rasteira = false
 		$AnimatedSprite2.play("Abaixado")
-	
 	else:
 		$AnimatedSprite2.play("Idle")
-		
+		rasteira = false
+		lowered = false
 	velocity.y += delta * gravity
 
 	velocity = move_and_slide(velocity, Vector2(0, -1))
