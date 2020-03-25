@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Correndo02.png-1163c79a96b174dc5cdf730501a8ddd8.stex"
+path="res://.import/Correndo02.png-6ac87b1a3626fc720adad93617b2b9b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Player/Correndo02.png"
-dest_files=[ "res://.import/Correndo02.png-1163c79a96b174dc5cdf730501a8ddd8.stex" ]
+source_file="res://assets/ui/Correndo02.png"
+dest_files=[ "res://.import/Correndo02.png-6ac87b1a3626fc720adad93617b2b9b6.stex" ]
 
 [params]
 

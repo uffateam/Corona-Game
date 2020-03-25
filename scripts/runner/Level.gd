@@ -24,9 +24,6 @@ func getRandomBlock():
 	
 	dir.list_dir_end()
 	
-	print(files)
-	print(blocksPath)
-	
 	return load(blocksPath+'/'+files[randi() % files.size()]).instance()
 
 func _ready():
@@ -38,12 +35,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(currentBlock.position.x < 1280/2 and currentBlock.position.x > 0):
+	if(currentBlock.position.x < -1200 and preparedBlock == null):
 		preparedBlock = getRandomBlock()
-		preparedBlock.position = Vector2(nextBlock.position.x + 1280, 0)
+		preparedBlock.position = Vector2(1280, 0)
 		add_child(preparedBlock)
+		preparedBlock.position = Vector2(1280 + nextBlock.position.x, 0)
 	
 	if(currentBlock.position.x < -1280):
 		currentBlock.queue_free()
+		
 		currentBlock = nextBlock
 		nextBlock = preparedBlock
+		preparedBlock = null
