@@ -3,14 +3,17 @@ extends KinematicBody2D
 export (int) var run_speed = 200
 export (int) var jump_speed = -400
 export (int) var gravity = 800
-export (int) var friction = 70
+export (int) var friction = 90
+
 var jumping = false
 var hooking = false
 var lowered = false
 var rasteira = false
+
 var velocity = Vector2()
 var Posi_Esquerdo = Vector2()
 var Posi_Direito = Vector2()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -49,12 +52,12 @@ func _input(event):
 func _physics_process(delta):
 	if (hooking == false):
 		gravity = 800
-		if rasteira == false:
+		if (rasteira == false):
 			velocity.x = 0
 		else:
-			if velocity.x == 0:
+			if (velocity.x == 0):
 				rasteira = false
-			if velocity.x > 0:
+			if (velocity.x > 0):
 				velocity.x -= friction * delta
 			else:
 				velocity.x += friction * delta
@@ -76,38 +79,38 @@ func _physics_process(delta):
 		hooking = false
 		jumping = true
 		velocity.y = jump_speed
-	if is_on_floor():
+	if (is_on_floor()):
 		jumping = false
-		friction = 70
+		friction = 90
 	else:
 		friction = 0
-	if Input.is_action_pressed("ui_left"):
+	if (Input.is_action_pressed("ui_left")):
 		hooking = false
 		if (rasteira == false) and (lowered == false):
 			velocity.x -= run_speed
 			$AnimatedSprite2.flip_h = true
 			$AnimatedSprite2.play("Run")
-		if Input.is_action_pressed("ui_down"):
+		if (Input.is_action_pressed("ui_down")):
 			rasteira = true
 			$AnimatedSprite2.play("Rasteira")
-			if velocity.x > -50:
+			if (velocity.x > -50):
 				rasteira = false
 				lowered = true
 				$AnimatedSprite2.play("Abaixado")
-	elif Input.is_action_pressed("ui_right"):
+	elif (Input.is_action_pressed("ui_right")):
 		hooking = false
 		if (rasteira == false) and (lowered == false):
 			velocity.x += run_speed
 			$AnimatedSprite2.flip_h = false
 			$AnimatedSprite2.play("Run")
-		if Input.is_action_pressed("ui_down"):
+		if (Input.is_action_pressed("ui_down")):
 			rasteira = true
 			$AnimatedSprite2.play("Rasteira")
-			if velocity.x < 50:
+			if (velocity.x < 50):
 				rasteira = false
 				lowered = true
 				$AnimatedSprite2.play("Abaixado")
-	elif Input.is_action_pressed("ui_down"):
+	elif (Input.is_action_pressed("ui_down")):
 		lowered = true
 		rasteira = false
 		$AnimatedSprite2.play("Abaixado")
