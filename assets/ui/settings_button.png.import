@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_correndo.png-84e81840ab9533865448f796fcd08709.stex"
+path="res://.import/settings_button.png-073fdb9f7aca4400ed53f395e53a41bd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/player_correndo.png"
-dest_files=[ "res://.import/player_correndo.png-84e81840ab9533865448f796fcd08709.stex" ]
+source_file="res://assets/ui/settings_button.png"
+dest_files=[ "res://.import/settings_button.png-073fdb9f7aca4400ed53f395e53a41bd.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

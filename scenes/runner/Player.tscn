@@ -7,21 +7,9 @@
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_horizontal_guides_": [  ]
-}
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-
-[node name="Button" type="Button" parent="."]
-margin_left = 30.6548
-margin_top = -9.9863
-margin_right = 42.6548
-margin_bottom = 10.0137
-__meta__ = {
-"_edit_use_anchors_": false
-}

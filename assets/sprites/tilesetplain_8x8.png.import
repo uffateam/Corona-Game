@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/base_virus.png-cec32a885d34b99688c83b00c5f73b7c.stex"
+path="res://.import/tilesetplain_8x8.png-68e0efc31b5cd09ae36ab19800168f7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/virus/base_virus.png"
-dest_files=[ "res://.import/base_virus.png-cec32a885d34b99688c83b00c5f73b7c.stex" ]
+source_file="res://assets/sprites/tilesetplain_8x8.png"
+dest_files=[ "res://.import/tilesetplain_8x8.png-68e0efc31b5cd09ae36ab19800168f7a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
