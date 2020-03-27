@@ -32,6 +32,8 @@ func _ready():
 	nextBlock = getRandomBlock()
 	nextBlock.position = Vector2(currentBlock.position.x + 1280, 0)
 	add_child(nextBlock)
+	
+	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -42,8 +44,6 @@ func _process(delta):
 		preparedBlock.position = Vector2(1280 + nextBlock.position.x, 0)
 	
 	if(currentBlock.position.x < -1280):
-		currentBlock.queue_free()
-		
 		currentBlock = nextBlock
 		nextBlock = preparedBlock
 		preparedBlock = null
