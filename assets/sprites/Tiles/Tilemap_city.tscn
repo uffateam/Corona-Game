@@ -26,6 +26,25 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="plataform_center-nt" type="Sprite" parent="."]
+position = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 64, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="plataform_center-nt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_center-nt/StaticBody2D"]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="plataform_left" type="Sprite" parent="."]
 position = Vector2( 0, 32 )
 texture = ExtResource( 1 )
@@ -37,6 +56,18 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left/StaticBody2D"]
 polygon = PoolVector2Array( 21, 0, 21, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
+
+[node name="plataform_left-nt" type="Sprite" parent="."]
+position = Vector2( 96, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="plataform_left-nt"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left-nt/StaticBody2D"]
+polygon = PoolVector2Array( 26, 0, 26, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
 
 [node name="plataform_right" type="Sprite" parent="."]
 position = Vector2( 64, 32 )
@@ -52,6 +83,21 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right/StaticBody2D"]
 polygon = PoolVector2Array( 0, 32, 0, 0, 12, 0, 12, 5, 6, 5, 6, 32 )
+
+[node name="plataform_right-nt" type="Sprite" parent="."]
+position = Vector2( 160, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 32, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="plataform_right-nt"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right-nt/StaticBody2D"]
+polygon = PoolVector2Array( 0, 32, 0, 0, 6, 0, 6, 5, 6, 5, 6, 32 )
 
 [node name="semiplataform_right" type="Sprite" parent="."]
 position = Vector2( 64, 0 )
