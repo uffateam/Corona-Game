@@ -18,7 +18,6 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_center"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_center/StaticBody2D"]
 position = Vector2( 16, 16 )
@@ -33,16 +32,11 @@ texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_left"]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_left/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left/StaticBody2D"]
+polygon = PoolVector2Array( 21, 0, 21, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
 
 [node name="plataform_right" type="Sprite" parent="."]
 position = Vector2( 64, 32 )
@@ -55,14 +49,9 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_right"]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_right/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right/StaticBody2D"]
+polygon = PoolVector2Array( 0, 32, 0, 0, 12, 0, 12, 5, 6, 5, 6, 32 )
 
 [node name="semiplataform_right" type="Sprite" parent="."]
 position = Vector2( 64, 0 )
@@ -75,14 +64,9 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_right"]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="semiplataform_right/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_right/StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 0, 5, 12, 5, 12, 0 )
 
 [node name="semiplataform_left" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -94,14 +78,9 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_left"]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="semiplataform_left/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_left/StaticBody2D"]
+polygon = PoolVector2Array( 32, 5, 32, 0, 21, 0, 21, 5 )
 
 [node name="semiplataform_center" type="Sprite" parent="."]
 position = Vector2( 32, 0 )
@@ -114,11 +93,6 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_center"]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="semiplataform_center/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_center/StaticBody2D"]
+polygon = PoolVector2Array( 0, 5, 32, 5, 32, 0, 0, 0 )
