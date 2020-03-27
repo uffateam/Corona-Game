@@ -32,6 +32,8 @@ func _input(event):
 			norma = sqrt((Posi_rel[0] * Posi_rel[0]) + (Posi_rel[1] * Posi_rel[1]))
 			Posi_rel = Posi_rel / norma
 			shot = true
+
+			$Gancho/CollisionShape2D/Sprite.show()
 			if Posi_rel[0] > 0:
 				$Gancho.rotation_degrees = -90 + atan((Posi_rel[1] / Posi_rel[0])) * 180 / PI
 			else:
@@ -46,10 +48,11 @@ func _physics_process(delta):
 	if shot == true:
 		if len($Gancho.get_overlapping_bodies()) == 1:
 			$Gancho/CollisionShape2D.scale.y += 1
+
 		else:
 			shot = false
 			hooking = true
-			
+		
 	if (hooking == false):
 		gravity = 800
 		if shot == false:
@@ -57,6 +60,10 @@ func _physics_process(delta):
 			Posi_Esquerdo = Vector2()
 			if $Gancho/CollisionShape2D.scale.y > 1:
 				$Gancho/CollisionShape2D.scale.y = $Gancho/CollisionShape2D.scale.y * 0.5
+				
+			else:
+
+				$Gancho/CollisionShape2D/Sprite.hide()
 		if (rasteira == false):
 			velocity.x = 0
 		else:
@@ -72,11 +79,11 @@ func _physics_process(delta):
 		velocity.y = 400 * Posi_rel[1]
 		if $Gancho/CollisionShape2D.scale.y > 1:
 			$Gancho/CollisionShape2D.scale.y -= 0.4 #0 * atan((Posi_rel[1] / Posi_rel[0]))
+
 		else:
 			velocity.y = 0
 			velocity.x = 0
 			$Gancho/CollisionShape2D.scale.y = 1
-		
 	if (Input.is_action_pressed("ui_up")) and (jumping == false):
 		shot = false
 		hooking = false
@@ -93,16 +100,22 @@ func _physics_process(delta):
 		if (rasteira == false) and (lowered == false):
 			velocity.x -= run_speed
 			$AnimatedSprite2.flip_h = true
-			$Collision.scale.y = 0.9
+			$Collision.position.x = 1
+			$Collision.position.y = 0.75
+			$Collision.scale.x = 1
+			$Collision.scale.y = 0.85
 			$AnimatedSprite2.play("Run")
 		if (Input.is_action_pressed("ui_down")):
 			rasteira = true
+			$Collision.position.x = 1
 			$Collision.position.y = 11
+			$Collision.scale.x = 1
 			$Collision.scale.y = 0.4
 			$AnimatedSprite2.play("Rasteira")
 			if (velocity.x > -50):
 				rasteira = false
 				lowered = true
+				$Collision.position.x = 1
 				$Collision.position.y = 5
 				$Collision.scale.x = 0.8
 				$Collision.scale.y = 0.7
@@ -113,16 +126,22 @@ func _physics_process(delta):
 		if (rasteira == false) and (lowered == false):
 			velocity.x += run_speed
 			$AnimatedSprite2.flip_h = false
-			$Collision.scale.y = 0.9
+			$Collision.position.x = 1
+			$Collision.position.y = 0.75
+			$Collision.scale.x = 1
+			$Collision.scale.y = 0.85
 			$AnimatedSprite2.play("Run")
 		if (Input.is_action_pressed("ui_down")):
 			rasteira = true
+			$Collision.position.x = 1
 			$Collision.position.y = 11
+			$Collision.scale.x = 1
 			$Collision.scale.y = 0.4
 			$AnimatedSprite2.play("Rasteira")
 			if (velocity.x < 50):
 				rasteira = false
 				lowered = true
+				$Collision.position.x = 1
 				$Collision.position.y = 5
 				$Collision.scale.x = 0.8
 				$Collision.scale.y = 0.7
@@ -131,12 +150,16 @@ func _physics_process(delta):
 		lowered = true
 		rasteira = false
 		shot = false
+		$Collision.position.x = 1
 		$Collision.position.y = 5
 		$Collision.scale.x = 0.8
 		$Collision.scale.y = 0.7
 		$AnimatedSprite2.play("Abaixado")
 	else:
 		$Collision.scale.x = 0.6
+		$Collision.scale.y = 1
+		$Collision.position.x = 1
+		$Collision.position.y = 1
 		$AnimatedSprite2.play("Idle")
 		rasteira = false
 		lowered = false
