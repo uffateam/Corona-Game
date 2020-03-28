@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var run_speed = 200
+export (int) var run_speed = 400
 export (int) var jump_speed = -400
 export (int) var gravity = 800
 export (int) var friction = 90
@@ -164,5 +164,14 @@ func _physics_process(delta):
 		rasteira = false
 		lowered = false
 	velocity.y += delta * gravity
+	
+	if(not rasteira):
+		velocity.x -= get_parent().get_node("Level").SPEED
+	run_speed = 200 + get_parent().get_node("Level").SPEED
 
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+
+
+func _on_Area2D_area_entered(area):
+	if(area.is_in_group("enemies")):
+		get_tree().change_scene("res://scenes/ui/home.tscn")

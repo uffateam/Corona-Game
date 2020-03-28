@@ -12,13 +12,14 @@ position = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 64, 32, 32 )
+region_rect = Rect2( -384, 17, 245, 53 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_center"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_center/StaticBody2D"]
 position = Vector2( 16, 16 )
@@ -38,7 +39,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_center-V"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_center-V/StaticBody2D"]
 position = Vector2( 16, 16 )
@@ -58,7 +60,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_center-nt"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataform_center-nt/StaticBody2D"]
 position = Vector2( 16, 16 )
@@ -78,7 +81,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_left"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left/StaticBody2D"]
 polygon = PoolVector2Array( 21, 0, 21, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
@@ -94,7 +98,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_left-nt"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left-nt/StaticBody2D"]
 polygon = PoolVector2Array( 26, 0, 26, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
@@ -110,7 +115,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_left-tb"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left-tb/StaticBody2D"]
 polygon = PoolVector2Array( 26, 0, 26, 27, 24, 28, 24, 28, 24, 32, 32, 32, 32, 0 )
@@ -126,7 +132,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_left-t"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_left-t/StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 0, 5, 26, 5, 26, 32, 32, 32, 32, 0 )
@@ -142,7 +149,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_right"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right/StaticBody2D"]
 polygon = PoolVector2Array( 0, 32, 0, 0, 12, 0, 12, 5, 6, 5, 6, 32 )
@@ -158,7 +166,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_right-nt"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right-nt/StaticBody2D"]
 polygon = PoolVector2Array( 0, 32, 0, 0, 6, 0, 6, 5, 6, 5, 6, 32 )
@@ -174,7 +183,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_right-bt"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right-bt/StaticBody2D"]
 polygon = PoolVector2Array( 0, 32, 0, 0, 6, 0, 6, 27, 8, 28, 8, 32, 6, 32 )
@@ -190,7 +200,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plataform_right-t"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plataform_right-t/StaticBody2D"]
 polygon = PoolVector2Array( 0, 32, 0, 0, 32, 0, 32, 5, 6, 5, 6, 32 )
@@ -209,7 +220,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_right"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_right/StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 0, 5, 12, 5, 12, 0 )
@@ -224,7 +236,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_left"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_left/StaticBody2D"]
 polygon = PoolVector2Array( 32, 5, 32, 0, 21, 0, 21, 5 )
@@ -240,7 +253,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="semiplataform_center"]
-visible = false
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="semiplataform_center/StaticBody2D"]
 polygon = PoolVector2Array( 0, 5, 32, 5, 32, 0, 0, 0 )

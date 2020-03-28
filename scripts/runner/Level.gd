@@ -7,6 +7,8 @@ onready var currentBlock = initialBlock.instance()
 var nextBlock = null
 var preparedBlock = null
 
+var SPEED = 100
+
 func getRandomBlock():
 	var files = []
 	var dir = Directory.new()
@@ -28,16 +30,16 @@ func getRandomBlock():
 
 func _ready():
 	add_child(currentBlock)
+	randomize()
 	
 	nextBlock = getRandomBlock()
 	nextBlock.position = Vector2(currentBlock.position.x + 1280, 0)
 	add_child(nextBlock)
-	
-	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(currentBlock.position.x < -1200 and preparedBlock == null):
+	
+	if(preparedBlock == null):
 		preparedBlock = getRandomBlock()
 		preparedBlock.position = Vector2(1280, 0)
 		add_child(preparedBlock)
@@ -47,3 +49,7 @@ func _process(delta):
 		currentBlock = nextBlock
 		nextBlock = preparedBlock
 		preparedBlock = null
+
+
+func _on_Timer_timeout():
+		SPEED += (2000 / SPEED) + 5

@@ -1,73 +1,120 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/play_button.png" type="Texture" id=1]
-[ext_resource path="res://assets/title.png" type="Texture" id=2]
-[ext_resource path="res://assets/play_button_pressed.png" type="Texture" id=3]
-[ext_resource path="res://assets/settings_button.png" type="Texture" id=4]
-[ext_resource path="res://assets/settings_button_pressed.png" type="Texture" id=5]
-[ext_resource path="res://assets/play_button_hover.png" type="Texture" id=6]
-[ext_resource path="res://assets/settings_button_hover.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/title.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/play_button_hover.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/play_button_pressed.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/play_button.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/settings_button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/settings_button_hover.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/settings_button.png" type="Texture" id=7]
+[ext_resource path="res://scenes/runner/levels_blocks/InitialLevelBlock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/paralax.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/Player/playerSprite.png" type="Texture" id=10]
 
-[node name="Home" type="MarginContainer"]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var pressed = false
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_PlayButton_button_down():
+	if(not pressed):
+		pressed
+		get_tree().change_scene(\"res://scenes/runner/Game.tscn\")
+"
+
+[node name="Home" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+scale = Vector2( 1.96257, 2.04486 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 120
-custom_constants/margin_top = 80
-custom_constants/margin_left = 120
-custom_constants/margin_bottom = 80
+margin_right = 1280.0
+margin_bottom = 720.0
+custom_constants/margin_right = 80
+custom_constants/margin_top = 120
+custom_constants/margin_left = 80
+custom_constants/margin_bottom = 120
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 120.0
-margin_top = 80.0
-margin_right = 1160.0
-margin_bottom = 640.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 80.0
+margin_top = 120.0
+margin_right = 1200.0
+margin_bottom = 600.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_right = 1040.0
-margin_bottom = 280.0
+[node name="TitleContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1120.0
+margin_bottom = 240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleContainer"]
-margin_left = 348.0
-margin_top = 93.0
-margin_right = 691.0
-margin_bottom = 187.0
-texture = ExtResource( 2 )
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TitleContainer"]
+margin_left = 388.0
+margin_top = 73.0
+margin_right = 731.0
+margin_bottom = 167.0
+texture = ExtResource( 1 )
 
-[node name="ButtonContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 280.0
-margin_right = 1040.0
-margin_bottom = 560.0
+[node name="ButtonContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 240.0
+margin_right = 1120.0
+margin_bottom = 480.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ButtonContainer"]
-margin_left = 437.0
-margin_top = 97.0
-margin_right = 603.0
-margin_bottom = 182.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 477.0
+margin_top = 77.0
+margin_right = 643.0
+margin_bottom = 162.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="VBoxContainer/ButtonContainer/HBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ButtonContainer/HBoxContainer"]
 margin_right = 78.0
 margin_bottom = 85.0
-texture_normal = ExtResource( 1 )
+texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 6 )
+texture_hover = ExtResource( 2 )
 
-[node name="ConfigButton" type="TextureButton" parent="VBoxContainer/ButtonContainer/HBoxContainer"]
+[node name="ConfigButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ButtonContainer/HBoxContainer"]
 margin_left = 88.0
 margin_right = 166.0
 margin_bottom = 85.0
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
+
+[node name="InitialLevelBlock" parent="." instance=ExtResource( 8 )]
+stoped = true
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 221.839, 531.472 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 12, 3, 22, 45 )
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ButtonContainer/HBoxContainer/PlayButton" to="." method="_on_PlayButton_button_down"]
