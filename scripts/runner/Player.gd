@@ -6,7 +6,6 @@ export (int) var gravity = 800
 
 var jumping = false
 var hooking = false
-var lowered = false
 var rasteira = false
 var shot = false
 
@@ -62,6 +61,7 @@ func _physics_process(delta):
 			else:
 				$Gancho/CollisionShape2D/Sprite.hide()
 	else:
+		rasteira = false
 		gravity = 0
 		velocity.x = 800 * Posi_rel[0]
 		velocity.y = 800 * Posi_rel[1]
@@ -81,7 +81,6 @@ func _physics_process(delta):
 	
 	if (Input.is_action_pressed("ui_left")):
 		$AnimatedSprite2.flip_h = true
-		lowered = false
 		hooking = false
 		velocity.x -= run_speed
 		if (rasteira == false):
@@ -107,7 +106,6 @@ func _physics_process(delta):
 	elif (Input.is_action_pressed("ui_right")):
 		$AnimatedSprite2.flip_h = false
 		velocity.x += run_speed
-		lowered = false
 		hooking = false
 		if (rasteira == false):
 			$Collision.position.x = 1
@@ -136,7 +134,6 @@ func _physics_process(delta):
 		$Collision.position.y = 1
 		$AnimatedSprite2.play("Idle")
 		rasteira = false
-		lowered = false
 		
 	velocity.y += delta * gravity
 	
