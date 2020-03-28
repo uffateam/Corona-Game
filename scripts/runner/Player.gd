@@ -74,11 +74,21 @@ func _physics_process(delta):
 			shot = false
 	
 	if (is_on_floor()):
+		if (Input.is_action_pressed("ui_down")):
+			lowered = true
+			rasteira = false
+			$Collision.position.x = 1
+			$Collision.position.y = 5
+			$Collision.scale.x = 0.8
+			$Collision.scale.y = 0.7
+			$AnimatedSprite2.play("Abaixado")
+		else:
+			lowered = false
 		jumping = false
-		if (Input.is_action_pressed("ui_up")) and (jumping == false):
+		if (Input.is_action_pressed("ui_up")):
 			jumping = true
 			velocity.y = jump_speed
-		
+	
 	if (Input.is_action_pressed("ui_left")):
 		$AnimatedSprite2.flip_h = true
 		hooking = false
@@ -127,14 +137,7 @@ func _physics_process(delta):
 			$Collision.scale.x = 1
 			$Collision.scale.y = 0.85
 			$AnimatedSprite2.play("Run")
-	elif (Input.is_action_pressed("ui_down")):
-		lowered = true
-		rasteira = false
-		$Collision.position.x = 1
-		$Collision.position.y = 5
-		$Collision.scale.x = 0.8
-		$Collision.scale.y = 0.7
-		$AnimatedSprite2.play("Abaixado")
+	
 	else:
 		$Collision.scale.x = 0.6
 		$Collision.scale.y = 1
